@@ -19,7 +19,7 @@ function checkTarget($target, $protocol, $headerName, $crlfSequence, &$vulnerabl
         $options = [
             "http" => [
                 "method" => "GET",
-                "header" => "Host: visit.hmetc.com\r\nConnection: close",
+                "header" => "Host: $target\r\nConnection: close",
             ],
         ];
 
@@ -27,7 +27,7 @@ function checkTarget($target, $protocol, $headerName, $crlfSequence, &$vulnerabl
         $responseHeaders = @get_headers($fullUrl, 1, $context);
 
         echo "Target: $target ($protocol)\n";
-        echo "Payload Sent:\nGET $fullUrl\nHost: visit.hmetc.com\nConnection: close\n\n";
+        echo "Payload Sent:\nGET $fullUrl\nHost: $target\nConnection: close\n\n";
 
         if (is_array($responseHeaders)) {
             echo "Response Headers:\n";
@@ -47,7 +47,7 @@ function checkTarget($target, $protocol, $headerName, $crlfSequence, &$vulnerabl
         }
     } catch (Exception $e) {
         echo "Target: $target ($protocol)\n";
-        echo "Payload Sent:\nGET $fullUrl\nHost: visit.hmetc.com\nConnection: close\n\n";
+        echo "Payload Sent:\nGET $fullUrl\nHost: $target\nConnection: close\n\n";
         echo "Error: {$e->getMessage()}\n\n";
     }
 }
